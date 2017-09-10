@@ -11,7 +11,15 @@ void print_menu_principal();
 /*void print_menu_reg_pers();
 void print_menu_assignatures();*/
 void print_menu_calc();
-/*float calc_media(int notes[MAX_ROW]);*/
+void print_media(float media);
+void print_min(int min);
+void print_max(int min);
+void print_quantity(int pos);
+void print_failures(int pos);
+float calc_media(int notes[MAX_ROW],int pos);
+int calc_failures(int notes[MAX_ROW],int pos);
+int calc_max(int notes[MAX_ROW],int pos);
+int calc_min(int notes[MAX_ROW],int pos);
 
 int count_assignatures(char m[][MAX_COL])
 {
@@ -33,12 +41,12 @@ void add_assignature(char m[MAX_ROW][MAX_COL],int pos)
 {
 	char aux[MAX_COL];
 
-	printf("entre a la funcion add_assignature\n");
+	/*printf("entre a la funcion add_assignature\n");*/
 	scanf("%s",aux);
 	while(getchar()!='\n');	
-	printf("pase el scanf\n");
+	/*printf("pase el scanf\n");*/
 	strcpy(m[pos],aux);
-	printf("pase el strcpy\n");
+	/*printf("pase el strcpy\n");*/
 }
 
 void add_notes(int notes[MAX_ROW],int pos)
@@ -76,7 +84,7 @@ void print_menu_calc()
 	fprintf(stdout,"%c) %s\n",SYMBOL_SUBMENU_CALC_BACK,MSG_OPTION_SUBMENU_CALC_BACK);
 }
 
-/*float calc_media(int notes[MAX_ROW],int pos)
+float calc_media(int notes[MAX_ROW],int pos)
 {
 	int i;
 	float media;
@@ -87,4 +95,69 @@ void print_menu_calc()
 		media += notes[i];
 	}
 	return media/(float)pos;
-}*/
+}
+
+void print_media(float media)
+{
+	fprintf(stdout, "%s %.2f\n",MSG_MEDIA,media);
+}
+
+void print_quantity(int pos)
+{
+	fprintf(stdout,"%s %d\n",MSG_QUANTITY,pos);
+}
+
+void print_failures(int failures)
+{
+	fprintf(stdout,"%s %d\n",MSG_FAILURES,failures);
+}
+
+void print_min(int min)
+{
+	fprintf(stdout,"%s %d\n",MSG_MIN,min);
+}
+
+void print_max(int max)
+{
+	fprintf(stdout,"%s %d\n",MSG_MAX,max);
+}
+
+int calc_failures(int notes[MAX_ROW],int pos)
+{
+	int i,failures;
+	failures = 0;
+	for(i=0;i<pos;i++)
+	{
+		if(notes[i] <= 2 )
+			failures++;
+	}
+	return failures;
+}
+
+int calc_max(int notes[MAX_ROW],int pos)
+{
+	int i,max;
+
+	max = notes[0];
+
+	for(i=1;i<pos;i++)
+	{
+		if(notes[i] > max)
+			max = notes[i];
+	}
+	return max;
+}
+
+int calc_min(int notes[MAX_ROW],int pos)
+{
+	int i,min;
+
+	min = notes[0];
+
+	for(i=1;i<pos;i++)
+	{
+		if(notes[i] < min)
+			min = notes[i];
+	}
+	return min;
+}
