@@ -44,7 +44,10 @@ int main (void)
 				while(state != STATE_QUIT)
 				{
 					print_menu_principal();
-					scanf("%c",&option);
+					if(scanf("%c",&option)!=1)
+						{
+							fprintf(stderr,MSG_ERROR_SYMBOL);
+						}
 					while(getchar()!='\n');		 /* estas dos lineas, de scanf y toupper pueden ir en una funcion leer_opcion con todas sus validaciones */
 					option = toupper(option); /* si utilizo toupper entonces el usr puede ingresa en minuscula y no pasa nada */
 
@@ -56,27 +59,55 @@ int main (void)
 							do
 							{
 								printf("Ingrese opcion:\n");
-								scanf("%c",&opt_menu_pers_reg);
+								if(scanf("%c",&opt_menu_pers_reg)!=1)
+								{
+									fprintf(stderr,MSG_ERROR_SYMBOL);
+								}
 								while(getchar()!='\n');
 								opt_menu_pers_reg = toupper(opt_menu_pers_reg);
 								switch(opt_menu_pers_reg)
 								{
 									case SYMBOL_PERSONAL_REGISTER_APELLIDOYNOMBRE:
                                                 printf("ingrese apellido y nombre\n");
-                                             /*   scanf("%s %s",&personal_reg[0],&personal_reg[1]);
+                                             /*   if(scanf("%s %s",&personal_reg[0],&personal_reg[1])!=2)
+						  {
+						  	fprintf(stderr, MSJ_ERROR);
+						  }
                                                 while(getchar()!='\n');  */
                                                 break;
 
 
                                     case SYMBOL_PERSONAL_REGISTER_PADRON:
                                                 printf("ingrese padron\n");
-                                              /*  scanf("%s",&personal_reg[2]);
-                                                while(getchar()!='\n'); */        /* validar */
+                                              /* if(scanf("%s",&personal_reg[2])!=1)
+					      	 {
+						 	fprintf(stderr,MSJ_ERROR);
+						 }
+						/* validacion de si es un numero 
+						j=strlen(personal_reg[2]);
+						int i=0,sw=0;
+						while(i<j, && sw==0)
+						{
+							if(isdigit(personal_reg[2][i]!=0
+							{
+								i++;
+							}
+							else
+							{
+								sw=1;
+							}
+						}
+						return sw;
+					
+                                      	        while(getchar()!='\n'); */        
                                                 break;
 
                                     case SYMBOL_PERSONAL_REGISTER_CARRERA:
                                                 printf("ingrese carrera\n");
-                                              /*  scanf("%s",personal_reg[3]);
+                                              /* if(scanf("%s",personal_reg[3])!=1)
+					      	 {
+						 	fprintf(stderr,MSJ_ERROR);
+						 }
                                                 while(getchar()!='\n'); */      /* validar */
                                                 break;
 
