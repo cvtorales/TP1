@@ -29,11 +29,15 @@
 #define MSG_OPTION_SUBMENU_CALC_QUANTITY "Cantidad de materias"
 #define MSG_OPTION_SUBMENU_CALC_FAILURES "Aplazos"
 #define MSG_OPTION_SUBMENU_CALC_BACK "Volver"
-#define MSG_MEDIA "El promedio es"
-#define MSG_QUANTITY "La cantidad de notas es"
-#define MSG_FAILURES "La cantidad de aplazos es"
-#define MSG_MIN "La nota minima es"
-#define MSG_MAX "La nota maxima es"
 
 #define MAX_ROW 10
 #define MAX_COL 30
+
+#define SYMBOL_PERSONAL_REGISTER_BACK '0'
+#define SYMBOL_PERSONAL_REGISTER_APELLIDOYNOMBRE 'A'
+#define SYMBOL_PERSONAL_REGISTER_PADRON '#'
+#define SYMBOL_PERSONAL_REGISTER_CARRERA 'C'
+
+
+
+
