@@ -1,19 +1,8 @@
 #include <ctype.h>
+#include "idioma.h"
 #include "functions.h"
 #include "functions.c" 
-
-typedef enum {
-				STATE_MENU_WELCOME = 0,
-				STATE_MENU_PRINCIPAL,
-				STATE_MENU_PERSONAL_REGISTER,
-				STATE_MENU_ASSIGNATURE,
-				STATE_MENU_CALC,
-				STATE_FINALIZE,
-				STATE_QUIT
-			} state_t;
-
-
-
+#include "Common.h"
 int main (void)
 {
 	char option,opt_menu_assig, opt_menu_pers_reg,opt_menu_calc; /*sera la lectura de opciones*/
