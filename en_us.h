@@ -1,7 +1,6 @@
 #ifndef EN_US__H
 #define EN_US__H 1
 
-/* Tenemos que cargar en otro idioma, Ingles por ejemplo */
 #define MSG_WELCOME "Welcome"
 
 #define MSG_WELCOME_MENU_PPAL "Choose what you want to do"
