@@ -104,7 +104,8 @@ int main (void)
 									case SYMBOL_SUBMENU_ASSIG_ADD_ASSIG:
 										pos = count_assignatures(assignatures);
 										if(pos == 0)
-										{
+										{	
+											printf("Ingrese materia\n");
 											add_assignature(assignatures,pos);
 											printf("Ingrese nota\n");
 											add_notes(notes,pos);
@@ -182,7 +183,8 @@ int main (void)
 
 						case SYMBOL_FINALIZE:
 							state = STATE_FINALIZE;
-							finalize(personal_reg,padron,media,pos,failures);
+							pos = count_assignatures(assignatures);
+							finalize(personal_reg,padron,media,notes,pos,failures);
 							state = STATE_MENU_PRINCIPAL;
 							break;
 

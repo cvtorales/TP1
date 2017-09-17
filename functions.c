@@ -274,10 +274,13 @@ int validation_finalize(char n[MAX_ROW_PERS_REG][MAX_COL_PERS_REG],int padron, f
 	return control;
 }
 
-void finalize(char n[MAX_ROW_PERS_REG][MAX_COL_PERS_REG],int padron, float media,int courses, int failures)
+void finalize(char n[MAX_ROW_PERS_REG][MAX_COL_PERS_REG],int padron, float media, int notes[MAX_ROW],int courses, int failures)
 {
 	int control;
 
+	media = calc_media(notes,courses);
+	failures = calc_failures(notes,courses);
+	
 	control = validation_finalize(n,padron,media,courses,failures);
 	if(control == 0)
 	{
