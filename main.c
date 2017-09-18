@@ -8,7 +8,7 @@ int main (void)
 	char option,opt_menu_assig, opt_menu_pers_reg,opt_menu_calc; /*sera la lectura de opciones*/
 	char assignatures[MAX_ROW][MAX_COL];
 	char personal_reg[MAX_ROW_PERS_REG][MAX_COL_PERS_REG];
-	int i,j,pos,min,max,failures,padron;
+	int i,j,pos,min,max,failures,padron,modification_pos;
 	int notes[MAX_ROW];
 	float media;
 	state_t state;
@@ -101,9 +101,27 @@ int main (void)
 						
 								switch(opt_menu_assig)
 								{
+									case SYMBOL_SUBMENU_ASSIG_MODIFY_POS_1:
+									case SYMBOL_SUBMENU_ASSIG_MODIFY_POS_2:
+									case SYMBOL_SUBMENU_ASSIG_MODIFY_POS_3:
+									case SYMBOL_SUBMENU_ASSIG_MODIFY_POS_4:
+									case SYMBOL_SUBMENU_ASSIG_MODIFY_POS_5:
+									case SYMBOL_SUBMENU_ASSIG_MODIFY_POS_6:
+									case SYMBOL_SUBMENU_ASSIG_MODIFY_POS_7:
+									case SYMBOL_SUBMENU_ASSIG_MODIFY_POS_8:
+									case SYMBOL_SUBMENU_ASSIG_MODIFY_POS_9:
+										pos = count_assignatures(assignatures);
+										modification_pos = (int)opt_menu_assig-FACTOR_CONVERTION_CHAR_TO_INT-1;/* -48 para convertir a int y -1 para entrar en la posicion correcta dentro del arreglo*/
+										if (pos && (modification_pos < pos))
+										{	
+											modify_assignatures(assignatures,notes,modification_pos);
+										}
+										state = STATE_MENU_ASSIGNATURE;
+										break;
+
 									case SYMBOL_SUBMENU_ASSIG_ADD_ASSIG:
 										pos = count_assignatures(assignatures);
-										if(pos == 0)
+										if(!pos)
 										{	
 											printf("Ingrese materia\n");
 											add_assignature(assignatures,pos);

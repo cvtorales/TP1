@@ -21,5 +21,7 @@ int calc_max(int notes[MAX_ROW],int pos);
 int calc_min(int notes[MAX_ROW],int pos);
 long int add_padron(void);
 void finalize(char n[MAX_ROW_PERS_REG][MAX_COL_PERS_REG],int padron, float media, int notes[MAX_ROW],int courses, int failures);
+void modify_assignatures(char a[MAX_ROW][MAX_COL],int notes[MAX_ROW], int pos);
+int validation_add_notes(int n);
 
 /*************************** End Prototypes  *************************/

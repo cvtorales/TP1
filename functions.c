@@ -31,13 +31,33 @@ void add_assignature(char assignatures[MAX_ROW][MAX_COL], int position_row)
 	}
 
 }
+
+int validation_add_notes(int n)
+{
+	if((n<MIN_NOTE) || (n>MAX_NOTE))
+	{
+		fprintf(stderr,"Error, la nota debe estar entre 0 y 10\n");
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
 void add_notes(int notes[MAX_ROW],int pos)
 {
-	int aux;
+	int aux,control;
 
 	scanf("%d",&aux);
-	while(getchar()!='\n');	
+	while(getchar()!='\n');
+	control = validation_add_notes(aux);
+	if(control)
+	{	
+		printf("Ingrese nota\n");
+		add_notes(notes,pos);
+	}else
+	{
 	notes[pos] = aux;
+	}
 }
 
 void print_menu_principal()
@@ -322,4 +342,12 @@ void print_menu_assig(char assignatures[MAX_ROW][MAX_COL],int notes[MAX_ROW])
 	}
 	fprintf(stdout,"%c) %s\n",SYMBOL_SUBMENU_ASSIG_ADD_ASSIG,MSG_OPTION_SUBMENU_ASSIG_ADD_ASSIG);
 	fprintf(stdout,"%c) %s\n",SYMBOL_SUBMENU_ASSIG_BACK,MSG_OPTION_SUBMENU_ASSIG_BACK);
+}
+
+void modify_assignatures(char a[MAX_ROW][MAX_COL],int notes[MAX_ROW], int pos)
+{
+	printf("Ingrese la materia modificada\n");
+	add_assignature(a,pos);
+	printf("Ingrese la nota modificada\n");
+	add_notes(notes,pos);
 }
