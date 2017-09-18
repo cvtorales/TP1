@@ -13,7 +13,7 @@ int main (void)
 	float media;
 	state_t state;
 
-	state = STATE_MENU_WELCOME; /* o tambien, STATE_INICIO */
+	state = STATE_MENU_WELCOME;
 	j = 0;
 	media = 0;
 	padron = 0;
@@ -22,7 +22,7 @@ int main (void)
 
 	for(i=0;i<MAX_ROW;i++)
 	{
-		assignatures[i][j] = '\0';
+		assignatures[i][j] = '\0'; /*aca hay hardcodeo*/
 		notes[i] = 0;
 	} /* inicializo la matriz assignatures y el vector de notas*/
 
@@ -42,7 +42,11 @@ int main (void)
 				while(state != STATE_QUIT)
 				{
 					print_menu_principal();
-					scanf("%c",&option);
+					if((scanf("%c",&option))!=1)
+					{
+						fprintf(stderr, "Error: no se pudo leer\n" );
+						return EXIT_FAILURE;
+					}
 					while(getchar()!='\n');		 /* estas dos lineas, de scanf y toupper pueden ir en una funcion leer_opcion con todas sus validaciones */
 					option = toupper(option); /* si utilizo toupper entonces el usr puede ingresa en minuscula y no pasa nada */
 
@@ -53,7 +57,11 @@ int main (void)
 							do
 							{
 								print_menu_pers_reg();
-								scanf("%c",&opt_menu_pers_reg);
+								if((scanf("%c",&opt_menu_pers_reg))!=1)
+								{
+									fprintf(stderr, "Error: no se pudo leer\n" );
+									return EXIT_FAILURE;
+								}
 								while(getchar()!='\n');
 								opt_menu_pers_reg = toupper(opt_menu_pers_reg);
 								switch(opt_menu_pers_reg)
@@ -63,20 +71,16 @@ int main (void)
                                                 add_last_name(personal_reg);
                                                 printf("ingrese nombre\n");
                                                 add_name(personal_reg);
-                                             /*   scanf("%s %s",&personal_reg[0],&personal_reg[1]);
-                                                while(getchar()!='\n');  */
                                                 break;
 
                                     case SYMBOL_SUBMENU_PERSONAL_REGISTER_PADRON:
                                                 printf("ingrese padron\n");
-                                              	padron = add_padron();      /* validar */
+                                              	padron = add_padron();
                                                 break;
 
                                     case SYMBOL_SUBMENU_PERSONAL_REGISTER_CAREER:
                                                 printf("ingrese carrera\n");
                                                 add_career(personal_reg);
-                                              /*  scanf("%s",personal_reg[3]);
-                                                while(getchar()!='\n'); */      /* validar */
                                                 break;
 
                                     case SYMBOL_SUBMENU_PERSONAL_REGISTER_BACK:
@@ -96,9 +100,12 @@ int main (void)
 							do
 							{
 								print_menu_assig(assignatures,notes);
-								scanf("%c",&opt_menu_assig);
+								if((scanf("%c",&opt_menu_assig))!=1)
+								{
+									fprintf(stderr,"Error: no se pudo leer\n");
+									return EXIT_FAILURE;
+								}
 								while(getchar()!='\n');
-						
 								switch(opt_menu_assig)
 								{
 									case SYMBOL_SUBMENU_ASSIG_MODIFY_POS_1:
@@ -116,7 +123,6 @@ int main (void)
 										{	
 											modify_assignatures(assignatures,notes,modification_pos);
 										}
-										state = STATE_MENU_ASSIGNATURE;
 										break;
 
 									case SYMBOL_SUBMENU_ASSIG_ADD_ASSIG:
@@ -133,7 +139,6 @@ int main (void)
 											printf("Ingrese nota\n");
 											add_notes(notes,pos);
 										}
-										state = STATE_MENU_ASSIGNATURE;
 										break;
 
 									case SYMBOL_SUBMENU_ASSIG_BACK:
@@ -152,9 +157,13 @@ int main (void)
 							do
 							{
 								print_menu_calc();
-								scanf("%c",&opt_menu_calc);
+								if((scanf("%c",&opt_menu_calc))!=1)
+								{
+									fprintf(stderr, "Error: no se pudo leer\n" );
+									return EXIT_FAILURE;
+								}
 								while(getchar()!='\n');
-								if(opt_menu_calc != 'm' || opt_menu_calc !='M')
+								if(opt_menu_calc != SYMBOL_SUBMENU_CALC_MIN || opt_menu_calc !=SYMBOL_SUBMENU_CALC_MAX)
 									opt_menu_calc=toupper(opt_menu_calc);
 								switch(opt_menu_calc)
 								{
