@@ -1,7 +1,7 @@
 #include "functions.h"
 #include <stdlib.h>
 #include <math.h>
-#include "idiomas.h"
+#include "idioma.h"
 
 int count_assignatures(char m[][MAX_COL])
 {
