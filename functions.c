@@ -1,4 +1,5 @@
 #include "functions.h"
+#include <stdlib.h>
 
 
 int count_assignatures(char m[][MAX_COL])
@@ -32,32 +33,46 @@ void add_assignature(char assignatures[MAX_ROW][MAX_COL], int position_row)
 
 }
 
-int validation_add_notes(int n)
+int add_notes(int notes[MAX_ROW],int pos)
 {
-	if((n<MIN_NOTE) || (n>MAX_NOTE))
-	{
-		fprintf(stderr,"Error, la nota debe estar entre 0 y 10\n");
-		return 1;
-	}else{
-		return 0;
-	}
-}
+		size_t aux;
 
-void add_notes(int notes[MAX_ROW],int pos)
-{
-	int aux,control;
+	int cualification;
+	char *temp;
 
-	scanf("%d",&aux);
-	while(getchar()!='\n');
-	control = validation_add_notes(aux);
-	if(control)
-	{	
-		printf("Ingrese nota\n");
-		add_notes(notes,pos);
-	}else
+	char line[12];
+	
+	if(fgets(line, 12  + 1, stdin)!= NULL)
 	{
-	notes[pos] = aux;
+		aux=strlen(line);
+
+		if( aux != 2 && aux != 3)
+		{
+			printf("%s\n", "mal"); /* poner un mensaje de error */
+			
+			/*   add_notes(notes,pos);  */
+			return EXIT_FAILURE;
+		}
+
+		
+
+		cualification = strtol(line, &temp, 10);	  
+		if(*temp && *temp != '\n') 
+		{
+			printf("%s\n", "mal");
+			return EXIT_FAILURE;  
+		}
+
+		if(cualification<0 && cualification>10) 
+		{
+			printf("%s\n", "mal");
+			return EXIT_FAILURE;  
+		}
+
 	}
+	notes[pos] = cualification;
+	
+	return EXIT_SUCCESS;
 }
 
 void print_menu_principal()
@@ -218,26 +233,28 @@ long int add_padron(void)
 	char *temp;
 
 	char line[100];
-
-	fgets(line,100,stdin);
-	aux=strlen(line);
-
-	if( aux != 6 && aux != 7)
+	
+	if(fgets(line, 100  + 1, stdin)!= NULL)
 	{
-		printf("%s\n", "mal"); /* poner un mensaje de error */
-		return EXIT_FAILURE;
-	}
+		aux=strlen(line);
 
-	padron = strtol(line, &temp, 10);	  
-	if(*temp && *temp != '\n') 
-	{/* entra cuando temp se queda apuntando a una letra */
-		printf("%s\n", "mal");
-		return EXIT_FAILURE;  
-	}
-	if (padron < 0)
-	{
-		printf("%s\n", "mal");
-		return EXIT_FAILURE; 
+		if( aux != 6 && aux != 7)
+		{
+			printf("%s\n", "mal"); /* poner un mensaje de error */
+			return EXIT_FAILURE;
+		}
+
+		padron = strtol(line, &temp, 10);	  
+		if(*temp && *temp != '\n') 
+		{/* entra cuando temp se queda apuntando a una letra */
+			printf("%s\n", "mal");
+			return EXIT_FAILURE;  
+		}
+		if (padron < 0)
+		{
+			printf("%s\n", "mal");
+			return EXIT_FAILURE; 
+		}
 	}
 	return padron;
 }

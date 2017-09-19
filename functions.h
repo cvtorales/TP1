@@ -7,7 +7,7 @@
 
 int count_assignatures(char m[][MAX_COL]);
 void add_assignature(char m[MAX_ROW][MAX_COL],int pos);
-void add_notes(int notes[MAX_ROW],int pos);
+int add_notes(int notes[MAX_ROW],int pos);
 void print_menu_principal();
 void print_menu_calc();
 void print_media(float media);
@@ -22,6 +22,6 @@ int calc_min(int notes[MAX_ROW],int pos);
 long int add_padron(void);
 void finalize(char n[MAX_ROW_PERS_REG][MAX_COL_PERS_REG],int padron, float media, int notes[MAX_ROW],int courses, int failures);
 void modify_assignatures(char a[MAX_ROW][MAX_COL],int notes[MAX_ROW], int pos);
-int validation_add_notes(int n);
+
 
 /*************************** End Prototypes  *************************/

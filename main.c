@@ -13,6 +13,7 @@ int main (void)
 	int notes[MAX_ROW];
 	float media;
 	state_t state;
+	int calif;
 
 	state = STATE_MENU_WELCOME;
 	j = 0;
@@ -133,12 +134,29 @@ int main (void)
 											puts(MSG_MENU_ASSIGNATURE_ADD_ASSIGNATURE);
 											add_assignature(assignatures,pos);
 											puts(MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
-											add_notes(notes,pos);
+											calif = add_notes(notes,pos);
+											
+											if(calif)
+												{	
+													puts(MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
+													calif = add_notes(notes,pos);
+													if(calif)
+														return EXIT_FAILURE;
+												}
+
 										}else{
 											puts(MSG_MENU_ASSIGNATURE_ADD_ASSIGNATURE);
 											add_assignature(assignatures,pos);
 											puts(MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
-											add_notes(notes,pos);
+											calif = add_notes(notes,pos);
+											
+											if(calif)
+												{	
+													puts(MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
+													calif = add_notes(notes,pos);
+													if(calif)
+														return EXIT_FAILURE;
+												}
 										}
 										break;
 
