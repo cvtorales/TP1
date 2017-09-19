@@ -10,6 +10,14 @@
 #define MSG_OPTION_4_MENU_PPAL "Finalize"
 #define MSG_OPTION_5_MENU_PPAL "Quit"
 
+#define MSG_MENU_PERSONAL_REGISTER_ADD_NAME "Ingrese su nombre:"
+#define MSG_MENU_PERSONAL_REGISTER_ADD_SURNAME "Ingrese su apellido:"
+#define MSG_MENU_PERSONAL_REGISTER_ADD_PADRON "Ingrese su numero de padron:"
+#define MSG_MENU_PERSONAL_REGISTER_ADD_CARRERA "Ingrese la carrera:"
+
+#define MSG_MENU_ASSIGNATURE_ADD_ASSIGNATURE "Ingrese el nombre de la materia:"
+#define MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION "Ingrese la calificacion:"
+
 #define MSG_OPTION_SUBMENU_ASSIG_ADD_ASSIG "Enter new assignature"
 #define MSG_OPTION_SUBMENU_ASSIG_BACK "Back"
 #define MSG_SUBMENU_ASSIG_EMPTY "You have no loaded assignatures"
@@ -44,5 +52,6 @@
 #define ERROR_MSG_EMPTY_PADRON "Error: No id loaded"
 #define ERROR_MSG_EMPTY_COURSES "Error: No assignatures loaded"
 #define ERROR_MSG_EMPTY_NOTES "Error: No qualifications loaded"
+#define MSG_ERROR_OPTION_MENU "La opcion ingresada es incorrecta"
 /***********************************************************************/
 #endif

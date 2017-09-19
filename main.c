@@ -3,6 +3,7 @@
 #include "functions.h"
 #include "functions.c" 
 #include "Common.h"
+
 int main (void)
 {
 	char option,opt_menu_assig, opt_menu_pers_reg,opt_menu_calc; /*sera la lectura de opciones*/
@@ -35,7 +36,7 @@ int main (void)
 		switch(state)
 		{
 			case STATE_MENU_WELCOME:
-				printf("%s\n",MSG_WELCOME); /*los MSGs estan en "messages.h" */
+				puts(MSG_WELCOME);
 				state = STATE_MENU_PRINCIPAL;
 				break;
 			case STATE_MENU_PRINCIPAL:
@@ -44,7 +45,7 @@ int main (void)
 					print_menu_principal();
 					if((scanf("%c",&option))!=1)
 					{
-						fprintf(stderr, "Error: no se pudo leer\n" );
+						fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
 						return EXIT_FAILURE;
 					}
 					while(getchar()!='\n');		 /* estas dos lineas, de scanf y toupper pueden ir en una funcion leer_opcion con todas sus validaciones */
@@ -59,7 +60,7 @@ int main (void)
 								print_menu_pers_reg();
 								if((scanf("%c",&opt_menu_pers_reg))!=1)
 								{
-									fprintf(stderr, "Error: no se pudo leer\n" );
+									fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
 									return EXIT_FAILURE;
 								}
 								while(getchar()!='\n');
@@ -67,26 +68,26 @@ int main (void)
 								switch(opt_menu_pers_reg)
 								{
 									case SYMBOL_SUBMENU_PERSONAL_REGISTER_LASTNAME_NAME:
-                                                printf("ingrese apellido\n");
+                                                puts(MSG_MENU_PERSONAL_REGISTER_ADD_SURNAME);
                                                 add_last_name(personal_reg);
-                                                printf("ingrese nombre\n");
+                                                puts(MSG_MENU_PERSONAL_REGISTER_ADD_NAME);
                                                 add_name(personal_reg);
                                                 break;
 
                                     case SYMBOL_SUBMENU_PERSONAL_REGISTER_PADRON:
-                                                printf("ingrese padron\n");
+                                                puts(MSG_MENU_PERSONAL_REGISTER_ADD_PADRON);
                                               	padron = add_padron();
                                                 break;
 
                                     case SYMBOL_SUBMENU_PERSONAL_REGISTER_CAREER:
-                                                printf("ingrese carrera\n");
+                                                puts(MSG_MENU_PERSONAL_REGISTER_ADD_CARRERA);
                                                 add_career(personal_reg);
                                                 break;
 
                                     case SYMBOL_SUBMENU_PERSONAL_REGISTER_BACK:
                                                 break;
                                     default:
-										printf("La opcion ingresada en el submenu registro personal es incorrecta\n");
+										fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
 										return EXIT_FAILURE;
 								}
 							}while(opt_menu_pers_reg!=SYMBOL_SUBMENU_PERSONAL_REGISTER_BACK);
@@ -102,7 +103,7 @@ int main (void)
 								print_menu_assig(assignatures,notes);
 								if((scanf("%c",&opt_menu_assig))!=1)
 								{
-									fprintf(stderr,"Error: no se pudo leer\n");
+									fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
 									return EXIT_FAILURE;
 								}
 								while(getchar()!='\n');
@@ -129,14 +130,14 @@ int main (void)
 										pos = count_assignatures(assignatures);
 										if(!pos)
 										{	
-											printf("Ingrese materia\n");
+											puts(MSG_MENU_ASSIGNATURE_ADD_ASSIGNATURE);
 											add_assignature(assignatures,pos);
-											printf("Ingrese nota\n");
+											puts(MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
 											add_notes(notes,pos);
 										}else{
-											printf("Ingrese materia\n");
+											puts(MSG_MENU_ASSIGNATURE_ADD_ASSIGNATURE);
 											add_assignature(assignatures,pos);
-											printf("Ingrese nota\n");
+											puts(MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
 											add_notes(notes,pos);
 										}
 										break;
@@ -145,7 +146,7 @@ int main (void)
 										break;
 
 									default:
-										printf("La opcion ingresada en el submenu assig es incorrecta\n");
+										fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
 										return EXIT_FAILURE;
 								}
 							}while(opt_menu_assig!=SYMBOL_SUBMENU_ASSIG_BACK);
@@ -159,7 +160,7 @@ int main (void)
 								print_menu_calc();
 								if((scanf("%c",&opt_menu_calc))!=1)
 								{
-									fprintf(stderr, "Error: no se pudo leer\n" );
+									fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
 									return EXIT_FAILURE;
 								}
 								while(getchar()!='\n');
@@ -200,7 +201,7 @@ int main (void)
 										break;
 
 									default:
-										fprintf(stderr,"Ninguna de las opciones ingresadas es correcta\n");
+										fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
 										return EXIT_FAILURE;
 								}
 							}while(opt_menu_calc!=SYMBOL_SUBMENU_CALC_BACK);
@@ -220,14 +221,14 @@ int main (void)
 							break;
 
 						default:
-							printf("La opc ingresada no es correcta\n");
+							fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
 							return EXIT_FAILURE;
 					}
 				}
 				break;
 
 			default:
-				printf("Hubo algun error con los enum\n");
+				fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
 				return EXIT_FAILURE;
 		}	
 	}
