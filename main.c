@@ -1,7 +1,6 @@
 #include <ctype.h>
 #include "idioma.h"
 #include "functions.h"
-#include "functions.c" 
 #include "Common.h"
 
 int main (void)
@@ -93,10 +92,10 @@ int main (void)
 								}
 							}while(opt_menu_pers_reg!=SYMBOL_SUBMENU_PERSONAL_REGISTER_BACK);
 							state = STATE_MENU_PRINCIPAL;
-						
-							
+
+
 							break;
-					
+
 						case SYMBOL_MENU_ASSIGNATURE:
 							state = STATE_MENU_ASSIGNATURE;
 							do
@@ -122,7 +121,7 @@ int main (void)
 										pos = count_assignatures(assignatures);
 										modification_pos = (int)opt_menu_assig-FACTOR_CONVERTION_CHAR_TO_INT-1;/* -48 para convertir a int y -1 para entrar en la posicion correcta dentro del arreglo*/
 										if (pos && (modification_pos < pos))
-										{	
+										{
 											modify_assignatures(assignatures,notes,modification_pos);
 										}
 										break;
@@ -130,14 +129,14 @@ int main (void)
 									case SYMBOL_SUBMENU_ASSIG_ADD_ASSIG:
 										pos = count_assignatures(assignatures);
 										if(!pos)
-										{	
+										{
 											puts(MSG_MENU_ASSIGNATURE_ADD_ASSIGNATURE);
 											add_assignature(assignatures,pos);
 											puts(MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
 											calif = add_notes(notes,pos);
-											
+
 											if(calif)
-												{	
+												{
 													puts(MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
 													calif = add_notes(notes,pos);
 													if(calif)
@@ -149,9 +148,9 @@ int main (void)
 											add_assignature(assignatures,pos);
 											puts(MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
 											calif = add_notes(notes,pos);
-											
+
 											if(calif)
-												{	
+												{
 													puts(MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
 													calif = add_notes(notes,pos);
 													if(calif)
@@ -225,7 +224,7 @@ int main (void)
 							}while(opt_menu_calc!=SYMBOL_SUBMENU_CALC_BACK);
 							state = STATE_MENU_PRINCIPAL;
 							break;
-							
+
 
 						case SYMBOL_FINALIZE:
 							state = STATE_FINALIZE;
@@ -248,7 +247,7 @@ int main (void)
 			default:
 				fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
 				return EXIT_FAILURE;
-		}	
+		}
 	}
 
 	return EXIT_SUCCESS;
