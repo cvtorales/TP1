@@ -52,7 +52,7 @@ int add_notes(int notes[MAX_ROW],int pos)
 
 		if( aux !=MIN_DIG_NOTE && aux != MAX_DIG_NOTE)
 		{
-			printf("%s\n",MSG_ERROR_OPTION_MENU); 
+			printf("%s\n",MSG_ERROR_NOTES); 
 			
 			/*   add_notes(notes,pos);  */
 			return EXIT_FAILURE;
@@ -63,13 +63,13 @@ int add_notes(int notes[MAX_ROW],int pos)
 		cualification = strtol(line, &temp,BASE);	  
 		if(*temp && *temp != '\n') 
 		{
-			printf("%s\n",MSG_ERROR_OPTION_MENU);
+			printf("%s\n",MSG_ERROR_NOTES);
 			return EXIT_FAILURE;  
 		}
 
 		if(cualification<MIN_NOTE && cualification>MAX_NOTE) 
 		{
-			printf("%s\n",MSG_ERROR_OPTION_MENU);
+			printf("%s\n",MSG_ERROR_NOTES);
 			return EXIT_FAILURE;  
 		}
 
