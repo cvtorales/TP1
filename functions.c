@@ -52,7 +52,7 @@ int add_notes(int notes[MAX_ROW],int pos)
 
 		if( aux != 2 && aux != 3)
 		{
-			printf("%s\n", "mal"); /* poner un mensaje de error */
+			printf("%s\n",MSG_ERROR_OPTION_MENU); 
 			
 			/*   add_notes(notes,pos);  */
 			return EXIT_FAILURE;
@@ -63,13 +63,13 @@ int add_notes(int notes[MAX_ROW],int pos)
 		cualification = strtol(line, &temp, 10);	  
 		if(*temp && *temp != '\n') 
 		{
-			printf("%s\n", "mal");
+			printf("%s\n",MSG_ERROR_OPTION_MENU);
 			return EXIT_FAILURE;  
 		}
 
 		if(cualification<0 && cualification>10) 
 		{
-			printf("%s\n", "mal");
+			printf("%s\n",MSG_ERROR_OPTION_MENU);
 			return EXIT_FAILURE;  
 		}
 
@@ -244,19 +244,19 @@ long int add_padron(void)
 
 		if( aux != 6 && aux != 7)
 		{
-			printf("%s\n", "mal"); /* poner un mensaje de error */
+			printf("%s\n",MSG_ERROR_OPTION_MENU); 
 			return EXIT_FAILURE;
 		}
 
 		padron = strtol(line, &temp, 10);	  
 		if(*temp && *temp != '\n') 
 		{/* entra cuando temp se queda apuntando a una letra */
-			printf("%s\n", "mal");
+			printf("%s\n",MSG_ERROR_OPTION_MENU);
 			return EXIT_FAILURE;  
 		}
 		if (padron < 0)
 		{
-			printf("%s\n", "mal");
+			printf("%s\n",MSG_ERROR_OPTION_MENU);
 			return EXIT_FAILURE; 
 		}
 	}
@@ -367,8 +367,8 @@ void print_menu_assig(char assignatures[MAX_ROW][MAX_COL],int notes[MAX_ROW])
 
 void modify_assignatures(char a[MAX_ROW][MAX_COL],int notes[MAX_ROW], int pos)
 {
-	printf("Ingrese la materia modificada\n");
+	printf(MSG_MENU_ASSIGNATURE_ADD_ASSIGNATURE"\n");
 	add_assignature(a,pos);
-	printf("Ingrese la nota modificada\n");
+	printf( MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION"\n");
 	add_notes(notes,pos);
 }
