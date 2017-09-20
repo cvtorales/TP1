@@ -6,6 +6,7 @@
 #include "idioma.h"
 #include "functions.h"
 
+
 int count_assignatures(char m[][MAX_COL])
 {
 	int total,i,j;
@@ -44,17 +45,15 @@ int add_notes(int notes[MAX_ROW],int pos)
 	int cualification=0;
 	char *temp;
 
-	char line[12];
+	char line[MAX_STR_CUALIFICATION];
 	
-	if(fgets(line, 12 /* + 1*/, stdin)!= NULL)
+	if(fgets(line, MAX_STR_CUALIFICATION /* + 1*/, stdin)!= NULL)
 	{
 		aux=strlen(line);
 
 		if( aux !=MIN_DIG_NOTE && aux != MAX_DIG_NOTE)
 		{
-			printf("%s\n",MSG_ERROR_NOTES); 
-			
-			/*   add_notes(notes,pos);  */
+			printf("%s\n",MSG_ERROR_NOTES);
 			return EXIT_FAILURE;
 		}
 
@@ -89,10 +88,6 @@ void print_menu_principal()
 	fprintf(stdout,"%c) %s\n",SYMBOL_QUIT,MSG_OPTION_5_MENU_PPAL);
 }
 
-/*void print_menu_assignatures()
-{
-
-}*/
 
 void print_menu_calc()
 {
@@ -236,9 +231,9 @@ long int add_padron(void)
 	int padron=0;
 	char *temp;
 
-	char line[10];
+	char line[MAX_STR_PADRON];
 	
-	if(fgets(line, 10 /*+ 1*/, stdin)!= NULL)
+	if(fgets(line, MAX_STR_PADRON /*+ 1*/, stdin)!= NULL)
 	{
 		aux=strlen(line);
 

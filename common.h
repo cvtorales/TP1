@@ -53,6 +53,10 @@ typedef enum {
 #define MAX_DIG_PADRON 7
 #define NOT_POSITIVE_DIG_PADRON 0
 
+
+#define MAX_STR_PADRON 20
+#define MAX_STR_CUALIFICATION 12
+
 #define FACTOR_CONVERTION_CHAR_TO_INT 48
 #define BASE 10
 
