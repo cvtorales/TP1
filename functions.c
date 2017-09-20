@@ -50,7 +50,7 @@ int add_notes(int notes[MAX_ROW],int pos)
 	{
 		aux=strlen(line);
 
-		if( aux != 2 && aux != 3)
+		if( aux !=MIN_DIG_NOTE && aux != MAX_DIG_NOTE)
 		{
 			printf("%s\n",MSG_ERROR_OPTION_MENU); 
 			
@@ -60,14 +60,14 @@ int add_notes(int notes[MAX_ROW],int pos)
 
 		
 
-		cualification = strtol(line, &temp, 10);	  
+		cualification = strtol(line, &temp,BASE);	  
 		if(*temp && *temp != '\n') 
 		{
 			printf("%s\n",MSG_ERROR_OPTION_MENU);
 			return EXIT_FAILURE;  
 		}
 
-		if(cualification<0 && cualification>10) 
+		if(cualification<MIN_NOTE && cualification>MAX_NOTE) 
 		{
 			printf("%s\n",MSG_ERROR_OPTION_MENU);
 			return EXIT_FAILURE;  
@@ -242,19 +242,19 @@ long int add_padron(void)
 	{
 		aux=strlen(line);
 
-		if( aux != 6 && aux != 7)
+		if( aux != MIN_DIG_PADRON && aux != MAX_DIG_PADRON)
 		{
 			printf("%s\n",MSG_ERROR_OPTION_MENU); 
 			return EXIT_FAILURE;
 		}
 
-		padron = strtol(line, &temp, 10);	  
+		padron = strtol(line, &temp,BASE);	  
 		if(*temp && *temp != '\n') 
 		{/* entra cuando temp se queda apuntando a una letra */
 			printf("%s\n",MSG_ERROR_OPTION_MENU);
 			return EXIT_FAILURE;  
 		}
-		if (padron < 0)
+		if (padron < NOT_POSITIVE_DIG_PADRON)
 		{
 			printf("%s\n",MSG_ERROR_OPTION_MENU);
 			return EXIT_FAILURE; 
@@ -267,49 +267,49 @@ int validation_finalize(char n[MAX_ROW_PERS_REG][MAX_COL_PERS_REG],int padron, f
 {
 	int control,j;
 
-	control = 0; /* puedo definir macro OK 0 NO_OK 1*/
+	control = OK; /* puedo definir macro OK 0 NO_OK 1*/
 	j = 0;
 	
 	if(n[POSITION_LAST_NAME][j] =='\0') /* puedo poner solo n[POSITION_LAST_NAME] sin ningun ==, asi comparo contra 0 */
 	{
 		fprintf(stderr,"%s\n",ERROR_MSG_EMPTY_LASTNAME);
-		control = 1;
+		control = NOT_OK;
 		return control;
 	}
 	if(n[POSITION_NAME][j] =='\0')
 	{
 		fprintf(stderr,"%s\n",ERROR_MSG_EMPTY_NAME);
-		control = 1;
+		control = NOT_OK;
 		return control;
 	}
 	if(n[POSITION_CAREER][j] =='\0')
 	{
 		fprintf(stderr,"%s\n",ERROR_MSG_EMPTY_CAREER);
-		control = 1;
+		control = NOT_OK;
 		return control;
 	}
 	if(padron == 0) /*hay que inicializar padron en 0*/
 	{
 		fprintf(stderr,"%s\n",ERROR_MSG_EMPTY_PADRON);
-		control = 1;
+		control = NOT_OK;
 		return control;
 	}
 	if(media == 0) /*hay que inicializar media en 0*/
 	{
 		fprintf(stderr,"%s\n",ERROR_MSG_EMPTY_NOTES);
-		control = 1;
+		control = NOT_OK;
 		return control;
 	}
-	if(failures == -1) /*hay que inicializar failures en -1, pues puede hacer failures =0, entonces no pued oinicializar*/
+	if(failures == -1) /*hay que inicializar failures en -1, pues puede hacer failures =0, entonces no puedo inicializar*/
 	{
 		fprintf(stderr,"%s\n",ERROR_MSG_EMPTY_NOTES);
-		control = 1;
+		control = NOT_OK;
 		return control;
 	}
 	if(courses == 0) /*hay que inicializar courses en 0*/
 	{
 		fprintf(stderr,"%s\n",ERROR_MSG_EMPTY_COURSES);
-		control = 1;
+		control = NOT_OK;
 		return control;
 	}
 	return control;
@@ -367,8 +367,8 @@ void print_menu_assig(char assignatures[MAX_ROW][MAX_COL],int notes[MAX_ROW])
 
 void modify_assignatures(char a[MAX_ROW][MAX_COL],int notes[MAX_ROW], int pos)
 {
-	printf(MSG_MENU_ASSIGNATURE_ADD_ASSIGNATURE"\n");
+	printf("%s\n",MSG_MENU_ASSIGNATURE_ADD_ASSIGNATURE);
 	add_assignature(a,pos);
-	printf( MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION"\n");
+	printf("%s\n",MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
 	add_notes(notes,pos);
 }
