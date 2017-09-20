@@ -244,19 +244,19 @@ long int add_padron(void)
 
 		if( aux != MIN_DIG_PADRON && aux != MAX_DIG_PADRON)
 		{
-			printf("%s\n",MSG_ERROR_OPTION_MENU); 
+			printf("%s\n",MSG_ERROR_PADRON); 
 			return EXIT_FAILURE;
 		}
 
 		padron = strtol(line, &temp,BASE);	  
 		if(*temp && *temp != '\n') 
 		{/* entra cuando temp se queda apuntando a una letra */
-			printf("%s\n",MSG_ERROR_OPTION_MENU);
+			printf("%s\n",MSG_ERROR_PADRON);
 			return EXIT_FAILURE;  
 		}
 		if (padron < NOT_POSITIVE_DIG_PADRON)
 		{
-			printf("%s\n",MSG_ERROR_OPTION_MENU);
+			printf("%s\n",MSG_ERROR_PADRON);
 			return EXIT_FAILURE; 
 		}
 	}
