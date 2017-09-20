@@ -55,7 +55,8 @@
 #define ERROR_MSG_EMPTY_COURSES "No hay ninguna Materia cargada"
 #define ERROR_MSG_EMPTY_NOTES "No hay ninguna Nota cargada"
 #define MSG_ERROR_OPTION_MENU "La opcion ingresada es incorrecta"
-#define MSG_ERROR_PADRON "El numero ingresado es incorrecto"
+#define MSG_ERROR_PADRON "El padron ingresado es incorrecto"
+#define MSG_ERROR_NOTES "la nota ingresada es incorrecta"
 /***********************************************************************/
 
 #endif
