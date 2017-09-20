@@ -53,5 +53,6 @@
 #define ERROR_MSG_EMPTY_COURSES "Error: No assignatures loaded"
 #define ERROR_MSG_EMPTY_NOTES "Error: No qualifications loaded"
 #define MSG_ERROR_OPTION_MENU "Invalid option"
+#define MSG_ERROR_PADRON "The inputed id is incorrect"
 /***********************************************************************/
 #endif
