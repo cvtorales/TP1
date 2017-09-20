@@ -1,7 +1,10 @@
-#include "functions.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
+#include <ctype.h>
 #include "idioma.h"
+#include "functions.h"
 
 int count_assignatures(char m[][MAX_COL])
 {
@@ -23,7 +26,7 @@ void add_assignature(char assignatures[MAX_ROW][MAX_COL], int position_row)
 {
 	char aux[MAX_COL];
 	int longitude;
-    if(fgets(aux, MAX_COL  + 1, stdin)!= NULL)
+    if(fgets(aux, MAX_COL  /*+ 1*/, stdin)!= NULL)
     {
     		longitude=strlen(aux);  
 			if(aux[longitude-1] == '\n')	
@@ -38,12 +41,12 @@ int add_notes(int notes[MAX_ROW],int pos)
 {
 		size_t aux;
 
-	int cualification;
+	int cualification=0;
 	char *temp;
 
 	char line[12];
 	
-	if(fgets(line, 12  + 1, stdin)!= NULL)
+	if(fgets(line, 12 /* + 1*/, stdin)!= NULL)
 	{
 		aux=strlen(line);
 
@@ -184,7 +187,7 @@ void add_name(char m[MAX_ROW_PERS_REG][MAX_COL_PERS_REG])
 {
 	char aux[MAX_COL_PERS_REG];
 	int longitude;
-    if(fgets(aux, MAX_COL_PERS_REG  + 1, stdin)!= NULL)
+    if(fgets(aux, MAX_COL_PERS_REG /* + 1*/, stdin)!= NULL)
     {
     		longitude=strlen(aux);  
 			if(aux[longitude-1] == '\n')	
@@ -200,7 +203,7 @@ void add_last_name(char m[MAX_ROW_PERS_REG][MAX_COL_PERS_REG])
 {
 	char aux[MAX_COL_PERS_REG];
 	int longitude;
-    if(fgets(aux, MAX_COL_PERS_REG  + 1, stdin)!= NULL)
+    if(fgets(aux, MAX_COL_PERS_REG /*+ 1*/, stdin)!= NULL)
     {
     		longitude=strlen(aux);  
 			if(aux[longitude-1] == '\n')	
@@ -215,7 +218,7 @@ void add_career(char m[MAX_ROW_PERS_REG][MAX_COL_PERS_REG])
 {
 	char aux[MAX_COL_PERS_REG];
 	int longitude;
-    if(fgets(aux, MAX_COL_PERS_REG  + 1, stdin)!= NULL)
+    if(fgets(aux, MAX_COL_PERS_REG  /*+ 1*/, stdin)!= NULL)
     {
     		longitude=strlen(aux);  
 			if(aux[longitude-1] == '\n')	
@@ -230,12 +233,12 @@ long int add_padron(void)
 {
 	size_t aux;
 
-	int padron;
+	int padron=0;
 	char *temp;
 
-	char line[100];
+	char line[10];
 	
-	if(fgets(line, 100  + 1, stdin)!= NULL)
+	if(fgets(line, 10 /*+ 1*/, stdin)!= NULL)
 	{
 		aux=strlen(line);
 

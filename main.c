@@ -1,7 +1,8 @@
+#include <stdio.h>
 #include <ctype.h>
 #include "idioma.h"
 #include "functions.h"
-#include "Common.h"
+#include "common.h"
 
 int main (void)
 {
