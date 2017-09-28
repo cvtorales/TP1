@@ -9,11 +9,12 @@ int main (void)
 	char option,opt_menu_assig, opt_menu_pers_reg,opt_menu_calc; /*sera la lectura de opciones*/
 	char assignatures[MAX_ROW][MAX_COL];
 	char personal_reg[MAX_ROW_PERS_REG][MAX_COL_PERS_REG];
-	int i,j,pos,min,max,failures,padron,modification_pos;
+	int i,j,pos,min,max,failures,modification_pos;
 	int notes[MAX_ROW];
 	float media;
 	state_t state;
-	int calif;
+	int calif_control;
+	long int padron,padron_control;
 
 	state = STATE_MENU_WELCOME;
 	j = 0;
@@ -47,7 +48,7 @@ int main (void)
 					if((scanf("%c",&option))!=1)
 					{
 						fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
-						return EXIT_FAILURE;
+					/*	return EXIT_FAILURE;   */
 					}
 					while(getchar()!='\n');		 /* estas dos lineas, de scanf y toupper pueden ir en una funcion leer_opcion con todas sus validaciones */
 					option = toupper(option); /* si utilizo toupper entonces el usr puede ingresa en minuscula y no pasa nada */
@@ -62,7 +63,7 @@ int main (void)
 								if((scanf("%c",&opt_menu_pers_reg))!=1)
 								{
 									fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
-									return EXIT_FAILURE;
+									/*return EXIT_FAILURE;*/
 								}
 								while(getchar()!='\n');
 								opt_menu_pers_reg = toupper(opt_menu_pers_reg);
@@ -77,7 +78,12 @@ int main (void)
 
                                     case SYMBOL_SUBMENU_PERSONAL_REGISTER_PADRON:
                                                 puts(MSG_MENU_PERSONAL_REGISTER_ADD_PADRON);
-                                              	padron = add_padron();
+                                              	padron_control = add_padron(&padron);
+												while(padron_control)
+												{
+												puts(MSG_MENU_PERSONAL_REGISTER_ADD_PADRON);
+												padron_control = add_padron(&padron);
+												}
                                                 break;
 
                                     case SYMBOL_SUBMENU_PERSONAL_REGISTER_CAREER:
@@ -89,7 +95,7 @@ int main (void)
                                                 break;
                                     default:
 										fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
-										return EXIT_FAILURE;
+										/*return EXIT_FAILURE;*/
 								}
 							}while(opt_menu_pers_reg!=SYMBOL_SUBMENU_PERSONAL_REGISTER_BACK);
 							state = STATE_MENU_PRINCIPAL;
@@ -105,7 +111,7 @@ int main (void)
 								if((scanf("%c",&opt_menu_assig))!=1)
 								{
 									fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
-									return EXIT_FAILURE;
+									/*return EXIT_FAILURE;*/
 								}
 								while(getchar()!='\n');
 								switch(opt_menu_assig)
@@ -134,29 +140,13 @@ int main (void)
 											puts(MSG_MENU_ASSIGNATURE_ADD_ASSIGNATURE);
 											add_assignature(assignatures,pos);
 											puts(MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
-											calif = add_notes(notes,pos);
+											calif_control = add_notes(notes,pos);
+											while(calif_control)
+											{
+												puts(MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
+												calif_control = add_notes(notes,pos);
+											}
 
-											if(calif)
-												{
-													puts(MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
-													calif = add_notes(notes,pos);
-													if(calif)
-														return EXIT_FAILURE;
-												}
-
-										}else{
-											puts(MSG_MENU_ASSIGNATURE_ADD_ASSIGNATURE);
-											add_assignature(assignatures,pos);
-											puts(MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
-											calif = add_notes(notes,pos);
-
-											if(calif)
-												{
-													puts(MSG_MENU_ASSIGNATURE_ADD_QUALIFICATION);
-													calif = add_notes(notes,pos);
-													if(calif)
-														return EXIT_FAILURE;
-												}
 										}
 										break;
 
@@ -165,7 +155,7 @@ int main (void)
 
 									default:
 										fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
-										return EXIT_FAILURE;
+										/*return EXIT_FAILURE;*/
 								}
 							}while(opt_menu_assig!=SYMBOL_SUBMENU_ASSIG_BACK);
 							state = STATE_MENU_PRINCIPAL;
@@ -179,7 +169,7 @@ int main (void)
 								if((scanf("%c",&opt_menu_calc))!=1)
 								{
 									fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
-									return EXIT_FAILURE;
+									/*return EXIT_FAILURE;*/
 								}
 								while(getchar()!='\n');
 								if(opt_menu_calc != SYMBOL_SUBMENU_CALC_MIN || opt_menu_calc !=SYMBOL_SUBMENU_CALC_MAX)
@@ -220,7 +210,7 @@ int main (void)
 
 									default:
 										fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
-										return EXIT_FAILURE;
+										/*return EXIT_FAILURE;*/
 								}
 							}while(opt_menu_calc!=SYMBOL_SUBMENU_CALC_BACK);
 							state = STATE_MENU_PRINCIPAL;
@@ -240,14 +230,14 @@ int main (void)
 
 						default:
 							fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
-							return EXIT_FAILURE;
+						/*	return EXIT_FAILURE;*/
 					}
 				}
 				break;
 
 			default:
 				fprintf(stderr, "%s\n", MSG_ERROR_OPTION_MENU);
-				return EXIT_FAILURE;
+			/*	return EXIT_FAILURE;  */
 		}
 	}
 

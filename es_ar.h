@@ -3,7 +3,7 @@
 
 #define MSG_WELCOME "********** Bienvenido *********"
 
-#define MSG_WELCOME_MENU_PPAL "Elija que desea hacer:"
+#define MSG_WELCOME_MENU_PPAL "Elija que desea hacer"
 #define MSG_OPTION_1_MENU_PPAL "Modificar registro personal"
 #define MSG_OPTION_2_MENU_PPAL "Modificar asignaturas"
 #define MSG_OPTION_3_MENU_PPAL "Calcular metrica individual"

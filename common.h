@@ -62,6 +62,7 @@ typedef enum {
 
 #define OK 0
 #define NOT_OK 1
+#define SIGN_IN_AGAIN -1
 
 #define SYMBOL_SUBMENU_PERSONAL_REGISTER_BACK '0'
 #define SYMBOL_SUBMENU_PERSONAL_REGISTER_LASTNAME_NAME 'A'

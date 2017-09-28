@@ -40,10 +40,9 @@ void add_assignature(char assignatures[MAX_ROW][MAX_COL], int position_row)
 
 int add_notes(int notes[MAX_ROW],int pos)
 {
-		size_t aux;
-
 	int cualification=0;
 	char *temp;
+	size_t aux;
 
 	char line[MAX_STR_CUALIFICATION];
 	
@@ -54,26 +53,24 @@ int add_notes(int notes[MAX_ROW],int pos)
 		if( aux !=MIN_DIG_NOTE && aux != MAX_DIG_NOTE)
 		{
 			printf("%s\n",MSG_ERROR_NOTES);
-			return EXIT_FAILURE;
+			return SIGN_IN_AGAIN;
 		}
+		cualification = strtol(line, &temp,BASE);
 
-		
-
-		cualification = strtol(line, &temp,BASE);	  
 		if(*temp && *temp != '\n') 
 		{
 			printf("%s\n",MSG_ERROR_NOTES);
-			return EXIT_FAILURE;  
+			return SIGN_IN_AGAIN;  
 		}
 
-		if(cualification<MIN_NOTE && cualification>MAX_NOTE) 
+		if(cualification<MIN_NOTE || cualification>MAX_NOTE) 
 		{
 			printf("%s\n",MSG_ERROR_NOTES);
-			return EXIT_FAILURE;  
+			return SIGN_IN_AGAIN;  
 		}
-
+		notes[pos] = cualification;
 	}
-	notes[pos] = cualification;
+	
 	
 	return EXIT_SUCCESS;
 }
@@ -224,14 +221,15 @@ void add_career(char m[MAX_ROW_PERS_REG][MAX_COL_PERS_REG])
 
 }
 
-long int add_padron(void)
+long int add_padron(long int* padron)
 {
 	size_t aux;
 
-	int padron=0;
+	long int aux_padron;
 	char *temp;
-
 	char line[MAX_STR_PADRON];
+
+	*padron=0;
 	
 	if(fgets(line, MAX_STR_PADRON /*+ 1*/, stdin)!= NULL)
 	{
@@ -240,22 +238,25 @@ long int add_padron(void)
 		if( aux != MIN_DIG_PADRON && aux != MAX_DIG_PADRON)
 		{
 			printf("%s\n",MSG_ERROR_PADRON); 
-			return EXIT_FAILURE;
+			return SIGN_IN_AGAIN;
 		}
 
-		padron = strtol(line, &temp,BASE);	  
+		aux_padron = strtol(line, &temp,BASE);	  
 		if(*temp && *temp != '\n') 
 		{/* entra cuando temp se queda apuntando a una letra */
 			printf("%s\n",MSG_ERROR_PADRON);
-			return EXIT_FAILURE;  
+			return SIGN_IN_AGAIN;  
 		}
-		if (padron < NOT_POSITIVE_DIG_PADRON)
+		if (aux_padron < NOT_POSITIVE_DIG_PADRON)
 		{
 			printf("%s\n",MSG_ERROR_PADRON);
-			return EXIT_FAILURE; 
+			return SIGN_IN_AGAIN; 
 		}
+
+		*padron = aux_padron;
 	}
-	return padron;
+	
+	return EXIT_SUCCESS;
 }
 
 int validation_finalize(char n[MAX_ROW_PERS_REG][MAX_COL_PERS_REG],int padron, float media,int courses, int failures)
